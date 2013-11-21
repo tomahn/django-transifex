@@ -91,7 +91,8 @@ class DjangoTransifexAPI(TransifexAPI):
             If the translation being uploaded doesn't have a source language
             translation     
         """
-        if language_code not in [code for code, __ in settings.LANGUAGES]:
+        #if language_code not in [code for code, __ in settings.LANGUAGES]:
+        if language_code not in [code for code in settings.TRANSIFEX_LANGUAGE_MAPPING.keys()]:
             raise LanguageCodeNotAllowed(language_code)
         
         folder = os.path.join(
@@ -163,11 +164,12 @@ class DjangoTransifexAPI(TransifexAPI):
             ]
             
             for transifex_language_code in languages:
-                local_language_code = self._convert_to_local_language_code(
-                    transifex_language_code
-                )
+                # local_language_code = self._convert_to_local_language_code(
+                #     transifex_language_code
+                # )
                 pofile_dir = os.path.join(
-                    app_settings.PROJECT_PATH, 'locale', local_language_code,
+                    #app_settings.PROJECT_PATH, 'locale', local_language_code,
+                    app_settings.PROJECT_PATH, 'locale', transifex_language_code,
                     'LC_MESSAGES'
                 )
                 if not os.path.exists(pofile_dir):
