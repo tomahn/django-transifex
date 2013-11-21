@@ -35,4 +35,4 @@ def _get_project_path():
 
 # Not strictly a setting, but this is a good place to keep it
 #PROJECT_PATH = _get_project_path()
-+PROJECT_PATH = getattr(settings, 'TRANSIFEX_PROJECT_ROOT', _get_project_path())
+PROJECT_PATH = getattr(settings, 'TRANSIFEX_PROJECT_ROOT', _get_project_path())
